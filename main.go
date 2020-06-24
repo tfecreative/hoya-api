@@ -29,5 +29,5 @@ func main() {
 
 	r.DELETE("/plants/:id", controllers.DeletePlant)
 
-	r.Run()
+	r.Run(":8000")
 }
