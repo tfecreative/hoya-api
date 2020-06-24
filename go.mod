@@ -1,4 +1,4 @@
-module tfecreative.com/hoya-api
+module github.com/tfecreative/hoya-api
 
 go 1.14
 

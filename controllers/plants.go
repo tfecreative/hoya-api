@@ -4,7 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"tfecreative.com/hoya-api/models"
+	"github.com/tfecreative/hoya-api/models"
 )
 
 type CreatePlantInput struct {

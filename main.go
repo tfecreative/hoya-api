@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"tfecreative.com/hoya-api/controllers"
-	"tfecreative.com/hoya-api/models"
+	"github.com/tfecreative/hoya-api/controllers"
+	"github.com/tfecreative/hoya-api/models"
 )
 
 func main() {
