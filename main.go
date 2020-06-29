@@ -1,6 +1,5 @@
 package main
 
-
 import (
 	"net/http"
 
@@ -8,9 +7,13 @@ import (
 
 	"github.com/tfecreative/hoya-api/controllers"
 	"github.com/tfecreative/hoya-api/models"
+
+	c "github.com/tfecreative/hoya-api/config"
 )
 
 func main() {
+	c.LoadConfig()
+	
 	r := gin.Default()
 
 	models.ConnectDataBase()
