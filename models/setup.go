@@ -18,8 +18,6 @@ func ConnectDataBase() {
 	dbName := viper.Get("POSTGRES_NAME")
 
 	dbStr := fmt.Sprintf("host=%v port=%v user=%v dbname=%v password=%v sslmode=disable", dbHost, dbPort, dbUser, dbName, dbPassword)
-	fmt.Println(dbStr)
-
 	database, err := gorm.Open("postgres", dbStr)
 	if err != nil {
 		panic("Failed to connect to database")

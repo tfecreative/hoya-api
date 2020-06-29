@@ -2,19 +2,28 @@ package main
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 
 	"github.com/tfecreative/hoya-api/controllers"
 	"github.com/tfecreative/hoya-api/models"
 
+	"github.com/gin-contrib/cors"
 	c "github.com/tfecreative/hoya-api/config"
 )
 
 func main() {
 	c.LoadConfig()
-	
+
 	r := gin.Default()
+
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:  []string{"*"},
+		AllowHeaders:  []string{"Origin"},
+		ExposeHeaders: []string{"Content-Length"},
+		MaxAge:        12 * time.Hour,
+	}))
 
 	models.ConnectDataBase()
 
