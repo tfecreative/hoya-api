@@ -1,29 +1,36 @@
 package models
 
 import (
+	"context"
 	"fmt"
+	"log"
 
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/spf13/viper"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
-var DB *gorm.DB
+var collection *mongo.Collection
+var ctx = context.TODO()
 
 func ConnectDataBase() {
-	dbHost := viper.Get("POSTGRES_HOST")
-	dbPort := viper.Get("POSTGRES_PORT")
-	dbUser := viper.Get("POSTGRES_USER")
-	dbPassword := viper.Get("POSTGRES_PASSWORD")
-	dbName := viper.Get("POSTGRES_NAME")
+	dbUri := viper.GetString("MONGO_DB_CONNECTION_URI")
 
-	dbStr := fmt.Sprintf("host=%v port=%v user=%v dbname=%v password=%v sslmode=disable", dbHost, dbPort, dbUser, dbName, dbPassword)
-	database, err := gorm.Open("postgres", dbStr)
+	// Create db client
+	clientOptions := options.Client().ApplyURI(dbUri)
+	client, err := mongo.Connect(ctx, clientOptions)
 	if err != nil {
-		panic("Failed to connect to database")
+		log.Fatal(err)
 	}
 
-	database.AutoMigrate(&Plant{})
+	fmt.Println("Pinging")
 
-	DB = database
+	// Test connection
+	err = client.Ping(ctx, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// Create db
+	collection = client.Database("hoya").Collection("plants")
 }
