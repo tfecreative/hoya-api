@@ -1,16 +1,16 @@
 package config
 
 import (
-	"fmt"
-
+	log "github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 )
 
 func LoadConfig() {
 	viper.SetDefault("MONGO_DB_CONNECTION_URI", "mongodb://mongo:27017/")
+	viper.AutomaticEnv()
 	viper.SetConfigFile(".env")
 	err := viper.ReadInConfig()
 	if err != nil {
-		panic(fmt.Errorf("Fatal error config file: %s \n", err))
+		log.Warning("Failed to load .env file")
 	}
 }
