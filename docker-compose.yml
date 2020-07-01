@@ -13,6 +13,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    restart: 'always'
+    restart: always
     depends_on:
       - mongo
+    volumes:
+      - ./:/go/src/hoya-api

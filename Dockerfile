@@ -7,4 +7,5 @@ COPY . .
 RUN go get -d -v ./...
 RUN go install -v ./...
 
-CMD ["go" , "run", "main.go"]
+RUN ["go", "get", "github.com/githubnemo/CompileDaemon"]
+ENTRYPOINT CompileDaemon -log-prefix=false -build="go build ./cmd/hoya-api/" -command="./hoya-api"
