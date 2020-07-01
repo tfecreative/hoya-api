@@ -19,3 +19,9 @@
 
 # Environment
 *.env
+
+# VSCode
+.vscode
+
+# Architecture
+__debug_bin
