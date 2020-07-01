@@ -16,7 +16,7 @@ func PlantsHandler(w http.ResponseWriter, r *http.Request) {
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
 
 	var plants []models.Plant
-	cur, err := collection.Find(ctx, bson.M{}) // k
+	cur, err := collection.Find(ctx, bson.M{})
 	if err != nil {
 		w.Write([]byte(`{ "message": "` + err.Error() + `" }`))
 		return
