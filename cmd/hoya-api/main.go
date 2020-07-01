@@ -17,7 +17,6 @@ import (
 func main() {
 	c.LoadConfig()
 
-	// setup logger
 	log.SetFormatter(&log.TextFormatter{
 		ForceColors: true,
 	})
