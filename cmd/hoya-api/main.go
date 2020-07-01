@@ -10,11 +10,17 @@ import (
 	"github.com/tfecreative/hoya-api/api/middleware"
 	"github.com/tfecreative/hoya-api/api/models"
 
+	log "github.com/sirupsen/logrus"
 	c "github.com/tfecreative/hoya-api/config"
 )
 
 func main() {
 	c.LoadConfig()
+
+	// setup logger
+	log.SetFormatter(&log.TextFormatter{
+		ForceColors: true,
+	})
 
 	r := mux.NewRouter()
 	r.Use(middleware.ApiResponseMiddleware)
