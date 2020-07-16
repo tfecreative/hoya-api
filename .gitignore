@@ -16,3 +16,13 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# Environment
+*.env
+
+# VSCode
+.vscode
+
+# Architecture
+__debug_bin
+hoya-api

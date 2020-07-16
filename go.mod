@@ -3,6 +3,12 @@ module github.com/tfecreative/hoya-api
 go 1.14
 
 require (
-	github.com/gin-gonic/gin v1.6.3
-	github.com/jinzhu/gorm v1.9.14
+	github.com/gorilla/mux v1.7.4
+	github.com/sirupsen/logrus v1.6.0
+	github.com/spf13/viper v1.7.0
+	github.com/stretchr/testify v1.4.0
+	go.mongodb.org/mongo-driver v1.3.4
+	golang.org/x/crypto v0.0.0-20191205180655-e7c4368fe9dd // indirect
+	golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd // indirect
+	gopkg.in/yaml.v2 v2.2.8 // indirect
 )

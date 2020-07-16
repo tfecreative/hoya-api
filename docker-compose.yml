@@ -1,10 +1,29 @@
 version: '3.5'
 
 services:
-  hoya_api:
+  mongo:
+    image: 'mongo:latest'
+    container_name: 'mongo'
+    ports:
+      - '27100:27017'
+  api:
+    container_name: hoya_api
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    restart: 'always'
+      - "2345:2345"
+    restart: always
+    tty: true
+    stdin_open: true
+    depends_on:
+      - mongo
+    volumes:
+      - ./:/go/src/hoya-api
+    env_file:
+      - .env
+    security_opt:
+      - "seccomp:unconfined"
+    cap_add:
+      - SYS_PTRACE
